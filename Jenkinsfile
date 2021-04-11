@@ -31,9 +31,7 @@ pipeline{
         stage("build"){
             steps{
               echo "building"
-              def mvHome = tool name: 'amit-maven', type: 'maven'
               sh "mvn clean package"
- 
               
             }
         }
