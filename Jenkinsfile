@@ -23,7 +23,10 @@ pipeline{
         stage("build"){
             steps{
               echo "building"
-              sh "${maven}/bin/mvn package"
+              withMaven(maven : 'amit-maven'){
+                 sh "mvn package"
+              }
+              
             }
         }
         stage("test"){
