@@ -20,11 +20,19 @@ pipeline{
                 }
             }
         }
+        stage("Initialize"){
+            steps{
+                sh '''
+                echo "PATH = ${PATH}"
+                echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }        
         stage("build"){
             steps{
               echo "building"
               def mvHome = tool name: 'amit-maven', type: 'maven'
-              sh "${mvHome}/bin/mvn package"
+              sh "mvn clean package"
  
               
             }
