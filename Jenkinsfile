@@ -3,7 +3,7 @@ pipeline{
     tools{
         maven 'amit-maven'
     }
-    environments{
+    environment{
         my_revision = '1.2.1'
     }
     parameters{
@@ -13,13 +13,13 @@ pipeline{
     stages{
         stage("get code"){
             steps{
-              echo "getting the code"
+              gv = load "script.groovy"
+              gv.build()  
             }
         }
         stage("build code"){
             steps{
-              gv = load "script.groovy"
-              gv.build()  
+
               sh 'mvn clean package'
             }
         }
