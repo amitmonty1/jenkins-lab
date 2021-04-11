@@ -23,9 +23,9 @@ pipeline{
         stage("build"){
             steps{
               echo "building"
-              withMaven(maven : 'amit-maven'){
-                 sh "mvn package"
-              }
+              def mvHome = tool name: 'amit-maven', type: 'maven'
+              sh "${mvHome}/bin/mvn package"
+ 
               
             }
         }
