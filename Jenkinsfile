@@ -9,7 +9,7 @@ pipeline{
     }
     parameters {
         choice( name: 'Version', choices: ['1.0.1','1.0.2','1.0.3'] , description: 'some crap' )
-        booleanParam (name: 'execute', defaultValue: false, description 'some dude')
+        booleanParam (name: 'execute', defaultValue: false, description: 'some dude')
     }
     stages{
         stage("get source code"){
