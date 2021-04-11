@@ -25,7 +25,9 @@ pipeline{
         }
         stage("deploy"){
             when{
-              params.flag
+                expression{
+                    params.flag
+                }
             }
             steps{
               echo "deploying"
