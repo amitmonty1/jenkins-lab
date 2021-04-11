@@ -18,11 +18,13 @@ pipeline{
                     gv = load "script.groovy"
                     gv.build()
                 }
+                git 'https://github.com/amitmonty1/jenkins-lab.git'
             }
         }
         stage("build"){
             steps{
               echo "building"
+              sh "${maven}/bin/mvn package"
             }
         }
         stage("test"){
