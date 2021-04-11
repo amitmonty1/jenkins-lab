@@ -34,7 +34,7 @@ pipeline{
                 }
             }
             steps{
-                echo "Testing the project"
+                echo "Testing the project with ${params.Version}"
             }
         }             
     }
