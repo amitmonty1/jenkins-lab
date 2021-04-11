@@ -17,7 +17,7 @@ pipeline{
         }
         stage("build code"){
             steps{
-              def gv = load "script.groovy"
+              gv = load "script.groovy"
               gv.build()  
               sh 'mvn clean package'
             }
