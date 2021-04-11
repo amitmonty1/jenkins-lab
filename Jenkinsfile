@@ -44,5 +44,16 @@ pipeline{
             }
         }                        
     }
+    post{
+        always{
+            echo "always"
+        }
+        sucess{
+            echo "sucess"
+        }
+        failure{
+            echo "failure"
+        }
+    }
 
 }
