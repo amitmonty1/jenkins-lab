@@ -1,59 +1,42 @@
-def gv 
 pipeline{
-    agent any
-    environment{
-        newversion = '1.3.5'
-    }
     tools{
         maven 'amit-maven'
     }
+    environments{
+        my_revision = '1.2.1'
+    }
     parameters{
-        choice(name: 'Version',choices: ['1.2.1','1.2.2','1.2.3'], description: 'awdawd awdawd')
-        booleanParam(name: 'flag', defaultValue: true)
+        choices(name: "version", choice: ['1.0.1','1.0.2','1.0.3'], description: 'choices for version')
+        booleanParam(name: "checkflag", defaultvalue: true)
     }
     stages{
-        stage("get from repo"){
+        stage("get code"){
             steps{
-                script{
-                    gv = load "script.groovy"
-                    gv.build()
-                }
+              echo "getting the code"
             }
         }
-      
-        stage("build"){
+        stage("build code"){
             steps{
-              echo "building"
-              sh "mvn clean package"
-              
-            }
-        }
-        stage("test"){
-            steps{
-              echo "testing"
+              def gv: load "script.groovy"
+              gv.build()  
+              sh 'mvn clean package'
             }
         }
         stage("deploy"){
-            when{
-                expression{
-                    params.flag
-                }
-            }
             steps{
-              echo "deploying ${newversion}"
+                echo "deploying the ${my_revision} to prod"
             }
-        }                        
+        }
     }
     post{
+        success{
+           echo "success"
+        }
         always{
             echo "always"
-        }
-        success{
-            echo "sucess"
         }
         failure{
             echo "failure"
         }
     }
-
 }
