@@ -18,7 +18,7 @@ pipeline{
                     gv = load "script.groovy"
                     gv.build()
                 }
-                git 'https://github.com/amitmonty1/jenkins-lab.git'
+                git 'https://github.com/amitmonty1/jenkins-lab'
             }
         }
         stage("build"){
