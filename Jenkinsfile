@@ -1,5 +1,6 @@
 def gv
 pipeline{
+    agent any
     tools{
         maven 'amit-maven'
     }
@@ -13,14 +14,13 @@ pipeline{
     stages{
         stage("get code"){
             steps{
-              gv = load "script.groovy"
-              gv.build()  
+                gv = load "script.groovy"
+                gv.build()
             }
         }
         stage("build code"){
             steps{
-
-              sh 'mvn clean package'
+                sh 'mvn clean package'
             }
         }
         stage("deploy"){
