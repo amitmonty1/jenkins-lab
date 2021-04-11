@@ -1,7 +1,7 @@
 pipeline{
     agent any
     tools{
-        maven: 'amit-maven'
+        maven 'amit-maven'
     }
     parameters{
         choice(name: 'Version',choices: ['1.2.1','1.2.2','1.2.3'], description: 'awdawd awdawd')
