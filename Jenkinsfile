@@ -1,5 +1,9 @@
+def gv 
 pipeline{
     agent any
+    environment{
+        newversion = '1.3.5'
+    }
     tools{
         maven 'amit-maven'
     }
@@ -10,7 +14,10 @@ pipeline{
     stages{
         stage("get from repo"){
             steps{
-              echo "getting from git"
+                script{
+                    gv = load "script.groovy"
+                    gv.build()
+                }
             }
         }
         stage("build"){
@@ -30,7 +37,7 @@ pipeline{
                 }
             }
             steps{
-              echo "deploying"
+              echo "deploying ${newversion}"
             }
         }                        
     }
