@@ -1,3 +1,4 @@
+def gv
 pipeline{
     tools{
         maven 'amit-maven'
